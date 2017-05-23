@@ -1,0 +1,108 @@
+
+1. Read File from remote path, and write into other remote path
+2. Read XML file from Remote and convert as JSON, write to remote path
+3. Read JSON file from Remote and logg into DB
+4. Read Content from site and log into DB,file
+5. Move/Copy folder and child from remote and moved to local
+6. Read content from two files and compare 
+7. Invoice Mgmt 
+public class Invoice
+{
+    public long Amount { get; set; }
+    public DateTime InvoiceDate { get; set; }
+
+    public void Add()
+    {
+        try
+        {
+            // Code for adding invoice
+
+           // Once Invoice has been added , send mail 
+            MailMessage mailMessage = new MailMessage("MailAddressFrom","MailAddressTo","MailSubject","MailBody");
+            this.SendEmail(mailMessage);
+        }
+        catch (Exception ex)
+        {
+             System.IO.File.WriteAllText(@"c:\Error.txt", ex.ToString());
+        }
+    }
+
+    public void Delete()
+    {
+        try
+        {
+            // Code for Delete invoice
+        }
+        catch (Exception ex)
+        {
+            System.IO.File.WriteAllText(@"c:\Error.txt", ex.ToString());
+        }
+    }
+
+    public void SendEmail(MailMessage mailMessage)
+    {
+        try
+        {
+            // Code for getting Email setting and send invoice mail
+        }
+        catch (Exception ex)
+        {
+            System.IO.File.WriteAllText(@"c:\Error.txt", ex.ToString());
+        }
+    }
+}
+
+8.
+public class Shape
+    {
+        //TODO add more shapes if needed
+        public const int SQUARE = 1;
+        public const int CIRCLE = 2;
+        public const int EQUILATERAL_TRIANGLE = 3;
+        private readonly double width;
+        public int type = -1;
+ 
+        public Shape(int type, double width)
+        {
+            this.type = type;
+            this.width = width;
+        }
+ 
+        public double getArea()
+        {
+            switch (type)
+            {
+                case SQUARE:
+                    return width * width;
+                case CIRCLE:
+                    return Math.PI * (width / 2) * (width / 2);
+                case EQUILATERAL_TRIANGLE:
+                    return (Math.Sqrt(3) / 4) * width * width;
+            }
+            throw new SystemException("Can`t compute area of unknown shape");
+        }
+ 
+        public static double CalculateTotalArea(List<Shape> shapes)
+        {
+            double totalArea = 0;
+            foreach (var shape in shapes)
+            {
+                for (int i = 0; i < shapes.Count; i++)
+                {
+                    if (shapes[i].type == SQUARE)
+                    {
+                        totalArea += shapes[i].getArea();
+                    }
+                    if (shapes[i].type == CIRCLE)
+                    {
+                        totalArea += shapes[i].getArea();
+                    }
+                    if (shapes[i].type == EQUILATERAL_TRIANGLE)
+                    {
+                        totalArea += shapes[i].getArea();
+                    }
+                }
+            }
+            return totalArea;
+        }
+    }
